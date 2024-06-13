@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ToDoCalendar/static/css/main.33ba8553.css",
+    "main.js": "/ToDoCalendar/static/js/main.b55fbc08.js",
+    "index.html": "/ToDoCalendar/index.html",
+    "main.33ba8553.css.map": "/ToDoCalendar/static/css/main.33ba8553.css.map",
+    "main.b55fbc08.js.map": "/ToDoCalendar/static/js/main.b55fbc08.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.33ba8553.css",
+    "static/js/main.b55fbc08.js"
+  ]
+}
