@@ -2,22 +2,86 @@ body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f0f2f5;
+  color: #333;
 }
 
 .todo-calendar {
   text-align: center;
-  background-color: #fefae0;
+  background-color: #f0f2f5;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .todo-calendar__header {
-  color: #333;
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin-bottom: 20px;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.switch-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.switch-label {
+  margin-left: 10px;
+  font-size: 1rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, #ccc, #bbb);
+  border-radius: 34px;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked+.slider {
+  background: linear-gradient(45deg, #4CAF50, #45a049);
+}
+
+input:checked+.slider:before {
+  transform: translateX(26px);
 }
 
 .todo-calendar__main {
@@ -26,40 +90,27 @@ body {
   align-items: flex-start;
   gap: 20px;
   width: 100%;
+  max-width: 1200px;
 }
 
-.react-calendar {
-  border: none;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  background-color: #ffffff;
+.task-panel,
+.task-range-panel {
+  background: linear-gradient(145deg, #fff, #f0f0f0);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  padding: 30px;
   width: 100%;
-  /* Полная ширина */
-  max-width: 800px;
-  /* Максимальная ширина - увеличена в два раза */
-  height: auto;
-  /* Автоматическая высота */
+  max-width: 100%;
 }
 
-.task-panel {
-  background-color: #fff;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  padding: 20px;
-  width: 100%;
-  /* Полная ширина */
-  max-width: 600px;
-  /* Максимальная ширина - увеличена в два раза */
-  height: auto;
-  /* Автоматическая высота */
-
-}
-
-.task-panel__header {
+.task-panel__header,
+.task-range-panel__header {
   margin-bottom: 20px;
 }
 
-.task-panel__task-list {
+.task-panel__task-list,
+.task-range-panel__task-list {
   list-style-type: none;
   padding: 0;
 }
@@ -104,34 +155,55 @@ body {
   background-color: #e0e0e0;
 }
 
-.react-calendar__tile--active {
+.react-calendar {
+  border: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin-right: 50px;
+}
+
+.react-calendar__navigation {
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ddd;
+  border-radius: 12px 12px 0 0;
+}
+
+.react-calendar__navigation button {
+  background-color: initial;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 8px 12px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.react-calendar__navigation button:hover {
+  background-color: #e0e0e0;
+}
+
+.react-calendar__month-view {
+  padding: 20px;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #f44336;
+}
+
+.react-calendar__tile--active,
+.react-calendar__tile--now {
   background-color: #4CAF50;
   color: #fff;
 }
 
-.react-calendar__tile--now {
-  background-color: #ff4d4d;
-  color: #fff;
-}
-
 .react-calendar__tile--hasActive:hover,
-.react-calendar__tile--active:hover {
-  background-color: #45a049;
-}
-
+.react-calendar__tile--active:hover,
 .react-calendar__tile--now:enabled:hover {
-  background-color: #F4CCCC;
-}
-
-.react-calendar__tile--now:enabled:focus {
-  background-color: #F4CCCC;
-}
-
-.react-calendar__tile {
-  padding: 10px;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  background-color: #45a049;
 }
 
 .react-calendar__tile:disabled {
@@ -145,7 +217,9 @@ body {
     flex-direction: column;
   }
 
-  .task-panel {
+  .task-panel,
+  .task-range-panel {
     width: 100%;
+    max-width: 100%;
   }
 }
